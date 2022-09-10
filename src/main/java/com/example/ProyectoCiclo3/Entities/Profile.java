@@ -1,6 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table (name = "Profile")
@@ -20,15 +21,9 @@ public class Profile {
     @Column (name = "user")
     private User user;
 
-    @Column (name = "image")
-    private String image;
-
     @Column (name = "createdAT")
-    private data create;
+    private Date create;
 
     @Column (name = "upDateAT")
-    private data upDatedAT;
-
-
-
+    private Date upDatedAT;
 }

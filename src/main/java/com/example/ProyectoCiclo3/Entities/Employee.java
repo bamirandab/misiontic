@@ -1,6 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table (name = "Employee")
@@ -10,7 +11,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @UniqueConstraint()
+//    @UniqueConstraint()
     @Column (name = "email")
     private String email;
 
@@ -18,7 +19,7 @@ public class Employee {
     private Profile profile;
 
     @Column (name = "role")
-    private Enum_RoleName role;
+    private EnumRole role;
 
     @Column (name = "enterprise")
     private Enterprise enterprise;
@@ -27,9 +28,9 @@ public class Employee {
     private Transaction[] transactions;
 
     @Column (name = "createdAT")
-    private data create;
+    private Date createdAt;
 
-    @Column (name = "upDateAT")
-    private data upDatedAT;
+    @Column (name = "updateAT")
+    private Date updatedAT;
 
 }

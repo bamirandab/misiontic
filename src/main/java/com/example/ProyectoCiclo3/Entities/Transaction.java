@@ -1,6 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table (name = "Transaction")
@@ -10,7 +11,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @UniqueConstraint()
     @Column (name = "concept")
     private String concept;
 
@@ -24,8 +24,65 @@ public class Transaction {
     private Enterprise enterprise;
 
     @Column (name = "createdAT")
-    private data create;
+    private Date create;
 
-    @Column (name = "upDateAT")
-    private data upDatedAT;
+    @Column (name = "updateAT")
+    private Date updatedAT;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getConcept() {
+        return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public Date getCreate() {
+        return create;
+    }
+
+    public void setCreate(Date create) {
+        this.create = create;
+    }
+
+    public Date getUpdatedAT() {
+        return updatedAT;
+    }
+
+    public void setUpdatedAT(Date upDatedAT) {
+        this.updatedAT = upDatedAT;
+    }
+
+
+
+
 }
