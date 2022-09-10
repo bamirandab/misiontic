@@ -10,11 +10,11 @@ public class Enterprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @UniqueConstraint()
+//    @UniqueConstraint()
     @Column (name = "name")
     private String name;
 
-    @UniqueConstraint()
+//    @UniqueConstraint()
     @Column (name = "document")
     private String document;
 
