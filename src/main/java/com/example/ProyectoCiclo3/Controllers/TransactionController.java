@@ -29,7 +29,7 @@ public class TransactionController {
 
     @PatchMapping("enterprises/{id}/movements")
     public Response updateTransaction(@PathVariable int id, Object[] attributes, Object[] values){
-        return this.transactionService;
+        return this.transactionService.updateTransaction(id, attributes, values);
     }
 
 
