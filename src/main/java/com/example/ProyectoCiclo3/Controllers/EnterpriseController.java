@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@Controller
+@RestController
+@RequestMapping
 public class EnterpriseController {
 
     private EnterpriseService enterpriseService;
