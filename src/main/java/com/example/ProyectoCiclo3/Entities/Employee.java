@@ -3,7 +3,7 @@ package com.example.ProyectoCiclo3.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table (name = Employee)
+@Table (name = "Employee")
 public class Employee {
 
     @Id
