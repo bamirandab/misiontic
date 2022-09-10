@@ -1,7 +1,6 @@
 package com.example.ProyectoCiclo3.Services;
 
 import com.example.ProyectoCiclo3.Entities.Enterprise;
-import com.example.ProyectoCiclo3.Responses.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

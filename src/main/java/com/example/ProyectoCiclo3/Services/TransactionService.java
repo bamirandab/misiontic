@@ -1,15 +1,12 @@
 package com.example.ProyectoCiclo3.Services;
 
-import com.example.ProyectoCiclo3.Entities.Enterprise;
 import com.example.ProyectoCiclo3.Entities.Transaction;
-import com.example.ProyectoCiclo3.Responses.Response;
 import com.example.ProyectoCiclo3.repository.ITransactionRepository;
 import org.springframework.stereotype.Service;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 @Service
 public class TransactionService {

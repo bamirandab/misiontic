@@ -1,11 +1,9 @@
 package com.example.ProyectoCiclo3.Controllers;
 
 import com.example.ProyectoCiclo3.Entities.Transaction;
-import com.example.ProyectoCiclo3.Responses.Response;
+import com.example.ProyectoCiclo3.Services.Response;
 import com.example.ProyectoCiclo3.Services.TransactionService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 
 @RestController
 public class TransactionController {
