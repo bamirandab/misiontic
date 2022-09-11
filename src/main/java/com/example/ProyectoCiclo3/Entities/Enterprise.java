@@ -1,5 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,11 +12,11 @@ public class Enterprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @UniqueConstraint()
+
     @Column (name = "name")
     private String name;
 
-    @UniqueConstraint()
+
     @Column (name = "document")
     private String document;
 

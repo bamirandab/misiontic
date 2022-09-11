@@ -1,5 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @UniqueConstraint()
+
     @Column (name = "concept")
     private String concept;
 

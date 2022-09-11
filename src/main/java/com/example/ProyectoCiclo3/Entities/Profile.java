@@ -1,5 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,9 +21,6 @@ public class Profile {
 
     @Column (name = "user")
     private User user;
-
-    @Column (name = "image")
-    private String image;
 
     @Column (name = "createdAT")
     private data create;

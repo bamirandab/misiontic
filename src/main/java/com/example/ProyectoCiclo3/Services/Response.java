@@ -9,7 +9,7 @@ public class Response {
     private String message;
 
 
-    public int getCode() {
+    public int getCode(int i) {
         return code;
     }
 
