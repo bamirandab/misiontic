@@ -22,20 +22,7 @@ public class TransactionService {
     public Response createTransaction(Transaction data, long id){
         Response response = new Response();
 
-        //Logica de negocio
-        //Validamos datos
-        if(!isValidEmailAddress(data.getUser().getCorreoElectronico())){
-            response.setCode(500);
-            response.setMessage("Error, el usuario dado no es válido.");
-            return  response;
-        }
 
-        //Validamos password
-        if(data.getUser().getPassword().equals(null) || data.getUser().getPassword().equals("")){
-            response.setCode(500);
-            response.setMessage("Error, su contraseña no es válida.");
-            return  response;
-        }
 
         ArrayList<Transaction> existe = this.transactionRepository.findTransaction(data.getId());
         if(existe != null && existe.size() > 0){

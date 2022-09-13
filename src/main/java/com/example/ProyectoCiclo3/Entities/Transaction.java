@@ -18,7 +18,7 @@ public class Transaction {
     private float amount;
 
     @Column (name = "user")
-    private User user;
+    private Employee employee;
 
     @Column (name = "enterprise")
     private Enterprise enterprise;
@@ -53,8 +53,8 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public User getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
 
