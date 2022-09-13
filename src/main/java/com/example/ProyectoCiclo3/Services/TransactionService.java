@@ -15,8 +15,8 @@ public class TransactionService {
     public TransactionService(ITransactionRepository rep){
         this.transactionRepository = rep;
     }
-    public Transaction findTransaction(int id){
-        return Transaction this.transactionRepository.findTransaction(id);
+    public ArrayList<Transaction> findTransaction(long id){
+        return  this.transactionRepository.findTransaction(id);
     }
 
     public Response createTransaction(Transaction data, long id){
@@ -37,7 +37,7 @@ public class TransactionService {
             return  response;
         }
 
-        ArrayList<Transaction> existe = this.transactionRepository.existeCorreo(data.getUser().getCorreoElectronico());
+        ArrayList<Transaction> existe = this.transactionRepository.findTransaction(data.getId());
         if(existe != null && existe.size() > 0){
             response.setCode(500);
             response.setMessage("Error, el correo electronico ya esta en uso.");
@@ -63,17 +63,18 @@ public class TransactionService {
 
     public Response deleteTransaction(long id){
         Response response = new Response();
-        this.transactionRepository.delete(id);
+        this.transactionRepository.deleteTransaction(id);
         response.setCode(200);
-        response.setMessage("Usuario eliminado exitosamente");
+        response.setMessage("Transaccion eliminado exitosamente");
         return response;
     }
 
-    public Response updateTransaction(long id, Object[] attributes, Object[] values){
+    public Response updateTransaction(long id, Object attributes, Object values){
         Response response = new Response();
-        this.transactionRepository.update(id, attributes, values);
+        this.transactionRepository.updateTransaction(id, attributes, values);
         response.setCode(200);
         response.setMessage("Transaccion actualizada exitosamente");
+        return response;
     }
 
 }

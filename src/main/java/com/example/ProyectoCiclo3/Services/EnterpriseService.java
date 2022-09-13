@@ -1,6 +1,8 @@
 package com.example.ProyectoCiclo3.Services;
 
 import com.example.ProyectoCiclo3.Entities.Enterprise;
+import com.example.ProyectoCiclo3.repository.IEnterpriseRepository;
+import com.example.ProyectoCiclo3.repository.ITransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,12 +11,17 @@ import java.util.Optional;
 @Service
 public class EnterpriseService {
 
-    public ArrayList <Enterprise> selectAllEnterprise(){
-        return (ArrayList <Enterprise>) this.repository.findAll();
+    private IEnterpriseRepository enterpriseRepository;
+    public EnterpriseService(IEnterpriseRepository rep){
+        this.enterpriseRepository= rep;
     }
 
-    public Enterprise selectByIdEnterprise (int id){
-        Optional <Enterprise> existe = this.repository.selectById(id);
+    public ArrayList <Enterprise> selectAllEnterprise(){
+        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
+    }
+
+    public Enterprise selectByIdEnterprise (long id){
+        Optional<Enterprise> existe = Optional.ofNullable(this.enterpriseRepository.selectById(id));
         if (existe.isPresent()){
             return existe.get();
         }else{

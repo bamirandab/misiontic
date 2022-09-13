@@ -5,6 +5,8 @@ import com.example.ProyectoCiclo3.Services.Response;
 import com.example.ProyectoCiclo3.Services.TransactionService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 public class TransactionController {
     public TransactionService transactionService;
@@ -13,7 +15,7 @@ public class TransactionController {
     }
 
     @GetMapping("enterprises/{id}/movements")
-    public Transaction getTransaction(@PathVariable int id){
+    public ArrayList<Transaction> getTransaction(@PathVariable long id){
         return this.transactionService.findTransaction(id);
     }
 
