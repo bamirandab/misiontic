@@ -13,15 +13,13 @@ public class Employee {
     public Employee(int id) {this.id = id;
     }
 
-    private int id;
+    private long id;
     private String name;
 
     private String email;
 
     public String getEmail() {
         return email;
-
-
     }
 
     public void setEmail(String email) {
@@ -34,11 +32,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ids;
 
-<<<<<<< HEAD
-//    @UniqueConstraint()
-=======
-    @Id
->>>>>>> c3ebe6edc3008ab4d13cffbc92cd49131a691b26
+
     @Column (name = "email")
     private String emails;
 
@@ -60,25 +54,25 @@ public class Employee {
     @Column (name = "updateAT")
     private Date updatedAT;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {this.id = id; }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {this.id = id; }
-
-    public String getName() {
-        return name;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {this.id = id; }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {this.id = id; }
+//
+//    public String getName() {
+//        return name;
+//    }
 
     public void setName(String name) {
         this.name = name;

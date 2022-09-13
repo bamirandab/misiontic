@@ -1,18 +1,25 @@
 package com.example.ProyectoCiclo3.Services;
 
 import com.example.ProyectoCiclo3.Entities.Enterprise;
+import com.example.ProyectoCiclo3.repository.IEnterpriseRepository;
+import com.example.ProyectoCiclo3.repository.ITransactionRepository;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class EnterpriseService {
 
+    private IEnterpriseRepository enterpriseRepository;
+    public EnterpriseService(IEnterpriseRepository rep){
+        this.enterpriseRepository = rep;
+    }
+
     public ArrayList<Enterprise> selectAllEnterprise(){
-        return (ArrayList <Enterprise>) this.repository.findAll();
+        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
     }
 
     public Enterprise selectByIdEnterprise (int id){
-        Optional<Enterprise> existe = this.repository.selectById(id);
+        Optional<Enterprise> existe = Optional.ofNullable(this.enterpriseRepository.selectById(id));
         if (existe.isPresent()){
             return existe.get();
         }else{
