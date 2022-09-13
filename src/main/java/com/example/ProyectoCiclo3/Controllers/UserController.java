@@ -1,12 +1,13 @@
-package com.example.ProyectoCiclo3.Controllers;
+//package com.example.ProyectoCiclo3.Controllers;
 
 import com.example.ProyectoCiclo3.Services.Response;
 import com.example.ProyectoCiclo3.Services.UserServices;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("users")
-@RestController
-public class UserController {
+//El tutor aclaro que este controlador de usuario
+//es para el empleado en este caso EmployeeController
+//por lo tanto se transcribe en EmployeeController
+//y dejo este controlador comentado
 
 //
 //    public Response users;
