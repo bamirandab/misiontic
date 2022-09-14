@@ -23,7 +23,6 @@ public class TransactionController {
     @PostMapping("enterprises/{id}/movements")
     public Response postTransaction(@RequestBody Transaction request, @PathVariable String id){
         long id_converter = Long.parseLong(id);
-        request.setId(id_converter);
         return this.transactionService.createTransaction(request, id_converter);
     }
 

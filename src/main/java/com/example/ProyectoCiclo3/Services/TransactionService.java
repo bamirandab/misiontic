@@ -23,13 +23,14 @@ public class TransactionService {
     public Response createTransaction(Transaction data, long id){
         Response response = new Response();
 
-        ArrayList<Transaction> existe = this.transactionRepository.findTransaction(data.getId());
-        if(existe != null && existe.size() > 0){
+        Transaction existe = selectById(id);
+        if(existe != null){
             response.setCode(500);
-            response.setMessage("Error, el correo electronico ya esta en uso.");
+            response.setMessage("La transaccion ya existe");
             return  response;
         }
 
+        data.setId(id);
         this.transactionRepository.save(data);
         response.setCode(200);
         response.setMessage("Transaccion registrada exitosamente");
@@ -58,6 +59,11 @@ public class TransactionService {
     public Response updateTransaction(Transaction data, long id){
         Response response = new Response();
         Transaction existe = selectById(id);
+        if (existe == null){
+            response.setCode(500);
+            response.setMessage("La transaccion no existe.");
+            return response;
+        }
         existe.setCreatedat(data.getCreatedat());
         existe.setUpdatedat(data.getUpdatedat());
         existe.setAmount(data.getAmount());
