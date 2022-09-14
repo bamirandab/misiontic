@@ -22,8 +22,6 @@ public class TransactionService {
     public Response createTransaction(Transaction data, long id){
         Response response = new Response();
 
-
-
         ArrayList<Transaction> existe = this.transactionRepository.findTransaction(data.getId());
         if(existe != null && existe.size() > 0){
             response.setCode(500);
@@ -56,9 +54,9 @@ public class TransactionService {
         return response;
     }
 
-    public Response updateTransaction(long id, Object attributes, Object values){
+    public Response updateTransaction(long id,  Object values){
         Response response = new Response();
-        this.transactionRepository.updateTransaction(id, attributes, values);
+        this.transactionRepository.updateTransaction(id,  values);
         response.setCode(200);
         response.setMessage("Transaccion actualizada exitosamente");
         return response;

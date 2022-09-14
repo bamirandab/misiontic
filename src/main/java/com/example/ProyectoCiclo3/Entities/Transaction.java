@@ -1,18 +1,15 @@
 package com.example.ProyectoCiclo3.Entities;
 
-import org.apache.catalina.User;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "Transaction")
+@Table (name = "Transactions")
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
 
     @Column (name = "concept")
     private String concept;
@@ -20,16 +17,16 @@ public class Transaction {
     @Column (name = "amount")
     private float amount;
 
-    @Column (name = "user")
-    private Employee employee;
+    @Column (name = "employee")
+    private long employee;
 
     @Column (name = "enterprise")
-    private Enterprise enterprise;
+    private long enterprise;
 
     @Column (name = "createdAT")
     private Date create;
 
-    @Column (name = "updateAT")
+    @Column (name = "updatedAT")
     private Date updatedAT;
 
     public long getId() {
@@ -56,16 +53,16 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Employee getEmployee() {
+    public long getEmployee() {
         return employee;
     }
 
 
-    public Enterprise getEnterprise() {
+    public long getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Enterprise enterprise) {
+    public void setEnterprise(long enterprise) {
         this.enterprise = enterprise;
     }
 

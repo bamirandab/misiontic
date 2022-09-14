@@ -3,23 +3,29 @@ package com.example.ProyectoCiclo3.Services;
 import com.example.ProyectoCiclo3.Entities.Enterprise;
 import com.example.ProyectoCiclo3.repository.IEnterpriseRepository;
 import com.example.ProyectoCiclo3.repository.ITransactionRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
+@Service
 public class EnterpriseService {
 
-    private IEnterpriseRepository enterpriseRepository;
-    public EnterpriseService(IEnterpriseRepository rep){
-        this.enterpriseRepository = rep;
-    }
+//    private IEnterpriseRepository enterpriseRepository;
+//    public EnterpriseService(IEnterpriseRepository rep){
+//        this.enterpriseRepository = rep;
+//    }
 
     public ArrayList<Enterprise> selectAllEnterprise(){
-        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
+        ArrayList<Enterprise> enterprise_test = new ArrayList<Enterprise>();
+        enterprise_test.add(new Enterprise());
+//        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
+        return (ArrayList <Enterprise>) enterprise_test;
     }
 
     public Enterprise selectByIdEnterprise (int id){
-        Optional<Enterprise> existe = Optional.ofNullable(this.enterpriseRepository.selectById(id));
+        Enterprise enterprise_test = new Enterprise();
+
+        Optional<Enterprise> existe = Optional.ofNullable(enterprise_test);
         if (existe.isPresent()){
             return existe.get();
         }else{

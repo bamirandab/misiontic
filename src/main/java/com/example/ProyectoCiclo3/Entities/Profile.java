@@ -20,8 +20,8 @@ public class Profile {
     @Column (name = "phone")
     private String phone;
 
-    @Column (name = "user")
-    private User user;
+    @Column (name = "employee")
+    private long employee;
 
     @Column (name = "createdAT")
     private Date create;

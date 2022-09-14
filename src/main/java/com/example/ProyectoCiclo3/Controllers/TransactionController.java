@@ -15,23 +15,27 @@ public class TransactionController {
     }
 
     @GetMapping("enterprises/{id}/movements")
-    public ArrayList<Transaction> getTransaction(@PathVariable long id){
-        return this.transactionService.findTransaction(id);
+    public ArrayList<Transaction> getTransaction(@PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        return this.transactionService.findTransaction(id_converter);
     }
 
     @PostMapping("enterprises/{id}/movements")
-    public Response postTransaction(@RequestBody Transaction request, @PathVariable long id){
-        return this.transactionService.createTransaction(request, id);
+    public Response postTransaction(@RequestBody Transaction request, @PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        request.setId(id_converter);
+        return this.transactionService.createTransaction(request, id_converter);
     }
 
     @DeleteMapping("enterprises/{id}/movements")
-    public Response deleteTransaction(@PathVariable long id){
-        return this.transactionService.deleteTransaction(id);
+    public Response deleteTransaction(@PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        return this.transactionService.deleteTransaction(id_converter);
     }
 
     @PatchMapping("enterprises/{id}/movements")
-    public Response updateTransaction(@PathVariable int id, Object[] attributes, Object[] values){
-        return this.transactionService.updateTransaction(id, attributes, values);
+    public Response updateTransaction(@PathVariable int id,  Object[] values){
+        return this.transactionService.updateTransaction(id,  values);
     }
 
 

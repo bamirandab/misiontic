@@ -26,11 +26,11 @@ public class Enterprise {
     @Column (name = "address")
     private String address;
 
-    @Column (name = "user")
-    private User user;
+    @Column (name = "employee")
+    private long employee;
 
     @Column (name = "transactions")
-    private Transaction[] transactions;
+    private long[] transactions;
 
 
     public long getId() {
@@ -73,19 +73,19 @@ public class Enterprise {
         this.address = address;
     }
 
-    public User getUser() {
-        return user;
+    public long getEmployee() {
+        return employee;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEmployee(long employee) {
+        this.employee = employee;
     }
 
-    public Transaction[] getTransactions() {
+    public long[] getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Transaction[] transactions) {
+    public void setTransactions(long[] transactions) {
         this.transactions = transactions;
     }
 }
