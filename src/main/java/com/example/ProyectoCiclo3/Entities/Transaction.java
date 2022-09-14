@@ -23,11 +23,11 @@ public class Transaction {
     @Column (name = "enterprise")
     private long enterprise;
 
-    @Column (name = "createdAT")
-    private Date create;
+    @Column (name = "createdat")
+    private Date createdat;
 
-    @Column (name = "updatedAT")
-    private Date updatedAT;
+    @Column (name = "updatedat")
+    private Date updatedat;
 
     public long getId() {
         return id;
@@ -66,20 +66,20 @@ public class Transaction {
         this.enterprise = enterprise;
     }
 
-    public Date getCreate() {
-        return create;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreate(Date create) {
-        this.create = create;
+    public void setCreatedat(Date createdAT) {
+        this.createdat = createdAT;
     }
 
-    public Date getUpdatedAT() {
-        return updatedAT;
+    public Date getUpdatedat() {
+        return updatedat;
     }
 
-    public void setUpdatedAT(Date upDatedAT) {
-        this.updatedAT = upDatedAT;
+    public void setUpdatedat(Date upDatedAT) {
+        this.updatedat = upDatedAT;
     }
 
 

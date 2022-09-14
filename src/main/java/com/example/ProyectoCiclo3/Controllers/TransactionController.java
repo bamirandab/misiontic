@@ -34,8 +34,9 @@ public class TransactionController {
     }
 
     @PatchMapping("enterprises/{id}/movements")
-    public Response updateTransaction(@PathVariable int id,  Object[] values){
-        return this.transactionService.updateTransaction(id,  values);
+    public Response updateTransaction(@RequestBody Transaction data, @PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        return this.transactionService.updateTransaction(data, id_converter);
     }
 
 

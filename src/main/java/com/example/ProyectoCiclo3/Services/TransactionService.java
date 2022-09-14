@@ -7,6 +7,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -48,18 +49,34 @@ public class TransactionService {
 
     public Response deleteTransaction(long id){
         Response response = new Response();
-        this.transactionRepository.deleteTransaction(id);
+        this.transactionRepository.deleteById(id);
         response.setCode(200);
         response.setMessage("Transaccion eliminado exitosamente");
         return response;
     }
 
-    public Response updateTransaction(long id,  Object values){
+    public Response updateTransaction(Transaction data, long id){
         Response response = new Response();
-        this.transactionRepository.updateTransaction(id,  values);
+        Transaction existe = selectById(id);
+        existe.setCreatedat(data.getCreatedat());
+        existe.setUpdatedat(data.getUpdatedat());
+        existe.setAmount(data.getAmount());
+        existe.setConcept(data.getConcept());
+        existe.setId(id);
+        this.transactionRepository.save(existe);
         response.setCode(200);
         response.setMessage("Transaccion actualizada exitosamente");
         return response;
+    }
+
+    public Transaction selectById(long Id){
+        Optional<Transaction> existe = this.transactionRepository.findById(Id);
+        if(existe.isPresent()){
+            return existe.get();
+        }
+        else {
+            return null;
+        }
     }
 
 }
