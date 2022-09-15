@@ -22,7 +22,7 @@ public class EmployeeService {
         return (ArrayList <Employee>) this.employeeRepository.findAll();
     }
 
-    public Response createEmployee (Employee data, long id){
+    public Response createEmployee (Employee data){
         Response response = new Response();
         Employee existe = selectById(data.getId());
         if(existe != null){
@@ -31,7 +31,6 @@ public class EmployeeService {
             return  response;
         }
 
-        data.setId(id);
         this.employeeRepository.save(data);
         response.setCode(200);
         response.setMessage("¡Su empleado ha sido registrada correctamente!");
