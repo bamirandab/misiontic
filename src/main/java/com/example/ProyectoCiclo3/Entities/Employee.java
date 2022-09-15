@@ -1,11 +1,39 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table (name = "Employee")
+@Table (name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column (name = "email")
+    private String emails;
+
+    @Column (name = "profile")
+    private long profile;
+
+    @Column (name = "role")
+    private EnumRole role;
+
+    @Column (name = "enterprise")
+    private long enterprise;
+
+    @Column (name = "transactions")
+    private Long[] transactions;
+
+    @Column (name = "createdat")
+    private Date createdat;
+
+    @Column (name = "updatedat")
+    private Date updatedat;
 
     public long getId() {
         return id;
@@ -47,53 +75,30 @@ public class Employee {
         this.enterprise = enterprise;
     }
 
-    public long[] getTransactions() {
+    public Long[] getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(long[] transactions) {
+    public void setTransactions(Long[] transactions) {
         this.transactions = transactions;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
     }
 
     public Date getUpdatedAT() {
-        return updatedAT;
+        return updatedat;
     }
 
     public void setUpdatedAT(Date updatedAT) {
-        this.updatedAT = updatedAT;
+        this.updatedat = updatedAT;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
-    @Column (name = "email")
-    private String emails;
-
-    @Column (name = "profile")
-    private long profile;
-
-    @Column (name = "role")
-    private EnumRole role;
-
-    @Column (name = "enterprise")
-    private long enterprise;
-
-    @Column (name = "transactions")
-    private long[] transactions;
-
-    @Column (name = "createdAT")
-    private Date createdAt;
-
-    @Column (name = "updatedAT")
-    private Date updatedAT;
 
 }

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 
 @RestController
-@RequestMapping("users")
 public class EmployeeController {
 
     public EmployeeService employeeService;

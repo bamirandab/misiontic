@@ -3,6 +3,7 @@ package com.example.ProyectoCiclo3.Entities;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table (name = "Enterprise")
@@ -31,6 +32,29 @@ public class Enterprise {
 
     @Column (name = "transactions")
     private long[] transactions;
+
+    public Date getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public Date getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Date updatedat) {
+        this.updatedat = updatedat;
+    }
+
+    @Column (name = "createdat")
+    private Date createdat;
+
+    @Column (name = "updatedat")
+    private Date updatedat;
+
 
 
     public long getId() {

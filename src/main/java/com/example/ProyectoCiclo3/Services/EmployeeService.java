@@ -57,7 +57,7 @@ public class EmployeeService {
         existe.setTransactions(data.getTransactions());
         existe.setEmails(data.getEmails());
         existe.setEnterprise(data.getEnterprise());
-        existe.setCreatedAt(data.getCreatedAt());
+        existe.setCreatedat(data.getCreatedat());
         existe.setUpdatedAT(data.getUpdatedAT());
         existe.setRole(data.getRole());
         this.employeeRepository.save(existe);
