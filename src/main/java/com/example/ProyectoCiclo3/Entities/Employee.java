@@ -7,12 +7,12 @@ import java.util.Date;
 @Table (name = "Employee")
 public class Employee {
 
-    public long getIds() {
-        return ids;
+    public long getId() {
+        return id;
     }
 
-    public void setIds(long ids) {
-        this.ids = ids;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getEmails() {
@@ -47,11 +47,11 @@ public class Employee {
         this.enterprise = enterprise;
     }
 
-    public Transaction[] getTransactions() {
+    public long[] getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Transaction[] transactions) {
+    public void setTransactions(long[] transactions) {
         this.transactions = transactions;
     }
 
@@ -73,7 +73,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ids;
+    private long id;
 
     @Column (name = "email")
     private String emails;
@@ -88,7 +88,7 @@ public class Employee {
     private long enterprise;
 
     @Column (name = "transactions")
-    private Transaction[] transactions;
+    private long[] transactions;
 
     @Column (name = "createdAT")
     private Date createdAt;
