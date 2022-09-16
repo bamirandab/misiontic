@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface IEmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query("SELECT u FROM Employee u WHERE u.id = :id")
-    Employee findEmployeeById(@Param("id") long id);
+    ArrayList<Employee> findEmployeeById(@Param("id") long id);
 
     @Query("SELECT u FROM Employee u ")
     ArrayList<Employee> findAll();

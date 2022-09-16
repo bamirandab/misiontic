@@ -1,10 +1,12 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "Transactions")
+@Table (name = "transaction")
 public class Transaction {
 
     @Id
@@ -17,11 +19,15 @@ public class Transaction {
     @Column (name = "amount")
     private float amount;
 
-    @Column (name = "employee")
-    private long employee;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee employee;
 
-    @Column (name = "enterprise")
-    private long enterprise;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "enterprise_id", referencedColumnName = "id")
+    private Enterprise enterprise;
 
     @Column (name = "createdat")
     private Date createdat;
@@ -53,16 +59,16 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public long getEmployee() {
+    public Employee getEmployee() {
         return employee;
     }
 
 
-    public long getEnterprise() {
+    public Enterprise getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(long enterprise) {
+    public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
 

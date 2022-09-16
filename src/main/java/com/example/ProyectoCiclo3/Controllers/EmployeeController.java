@@ -1,11 +1,8 @@
 package com.example.ProyectoCiclo3.Controllers;
 
 import com.example.ProyectoCiclo3.Entities.Employee;
-import com.example.ProyectoCiclo3.Entities.Transaction;
 import com.example.ProyectoCiclo3.Services.EmployeeService;
 import com.example.ProyectoCiclo3.Services.Response;
-import com.example.ProyectoCiclo3.Services.TransactionService;
-import com.example.ProyectoCiclo3.Services.UserServices;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/user/{id}")
-    public Employee getIdUsers(@PathVariable String id) {
+    public ArrayList<Employee> getIdUsers(@PathVariable String id) {
         long id_converter = Long.parseLong(id);
         return this.employeeService.selectById(id_converter);
     }

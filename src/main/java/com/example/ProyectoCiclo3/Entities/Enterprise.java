@@ -1,9 +1,11 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name = "Enterprise")
@@ -26,12 +28,13 @@ public class Enterprise {
 
     @Column (name = "address")
     private String address;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "enterprise")
+    private List<Employee> employee;
 
-    @Column (name = "employee")
-    private long employee;
-
-    @Column (name = "transactions")
-    private long[] transactions;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "enterprise")
+    private List<Transaction> transactions;
 
     public Date getCreatedat() {
         return createdat;
@@ -97,19 +100,19 @@ public class Enterprise {
         this.address = address;
     }
 
-    public long getEmployee() {
+    public List<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(long employee) {
+    public void setEmployee(List<Employee> employee) {
         this.employee = employee;
     }
 
-    public long[] getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(long[] transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 }

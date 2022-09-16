@@ -1,11 +1,7 @@
 package com.example.ProyectoCiclo3.Services;
 
 import com.example.ProyectoCiclo3.Entities.Employee;
-import com.example.ProyectoCiclo3.Entities.Profile;
-import com.example.ProyectoCiclo3.Entities.Transaction;
 import com.example.ProyectoCiclo3.repository.IEmployeeRepository;
-import com.example.ProyectoCiclo3.repository.IProfileRepository;
-import com.example.ProyectoCiclo3.repository.ITransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +20,7 @@ public class EmployeeService {
 
     public Response createEmployee (Employee data){
         Response response = new Response();
-        Employee existe = selectById(data.getId());
+        Optional<Employee> existe = this.employeeRepository.findById(data.getId());
         if(existe != null){
             response.setCode(500);
             response.setMessage("La transaccion ya existe");
@@ -47,12 +43,13 @@ public class EmployeeService {
 
     public Response upDateEmployee (Employee data, long id){
         Response response = new Response();
-        Employee existe = selectById(data.getId());
-        if (existe == null){
+        Optional<Employee> valida = this.employeeRepository.findById(data.getId());
+        if (valida == null){
             response.setCode(500);
             response.setMessage("¡El ID digitado no existe!");
             return response;
         }
+        Employee existe = valida.get();
         existe.setProfile(data.getProfile());
         existe.setTransactions(data.getTransactions());
         existe.setEmails(data.getEmails());
@@ -65,14 +62,8 @@ public class EmployeeService {
         response.setMessage("¡Sus datos han sido actualizados correctamente!");
         return response;
     }
-    public Employee selectById(long Id){
-    Optional<Employee> existe = this.employeeRepository.findById(Id);
-    if(existe.isPresent()){
-        return existe.get();
-    }
-    else {
-        return null;
-    }
+    public ArrayList<Employee> selectById(long Id){
+        return this.employeeRepository.findEmployeeById(Id);
     }
 
 }

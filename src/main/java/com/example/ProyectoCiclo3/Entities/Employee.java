@@ -1,5 +1,7 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -22,12 +24,13 @@ public class Employee {
 
     @Column (name = "role")
     private EnumRole role;
-
-    @Column (name = "enterprise")
-    private long enterprise;
-
-    @Column (name = "transactions")
-    private Long[] transactions;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="enterprise_id", referencedColumnName = "id")
+    private Enterprise enterprise;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "employee")
+    private List<Transaction> transactions;
 
     @Column (name = "createdat")
     private Date createdat;
@@ -67,19 +70,19 @@ public class Employee {
         this.role = role;
     }
 
-    public long getEnterprise() {
+    public Enterprise getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(long enterprise) {
+    public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
 
-    public Long[] getTransactions() {
+    public  List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Long[] transactions) {
+    public void setTransactions( List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
