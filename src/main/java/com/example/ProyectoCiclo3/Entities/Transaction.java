@@ -1,6 +1,8 @@
 package com.example.ProyectoCiclo3.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,14 +21,14 @@ public class Transaction {
     @Column (name = "amount")
     private float amount;
 
-    @JsonBackReference
+
     @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @JsonBackReference
+
     @ManyToOne
-    @JoinColumn(name = "enterprise_id", referencedColumnName = "id")
+    @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
     @Column (name = "createdat")

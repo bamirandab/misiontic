@@ -5,6 +5,7 @@ import com.example.ProyectoCiclo3.repository.IEmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -20,8 +21,18 @@ public class EmployeeService {
 
     public Response createEmployee (Employee data){
         Response response = new Response();
+        ArrayList<Employee> all_employes = selectAllEmployees();
+
+        if( all_employes.size() == 0){
+            long default_id = 1;
+            data.setId( default_id );
+        }else{
+            ArrayList<Long> ids = new ArrayList<>();
+            all_employes.forEach((n) -> ids.add(n.getId()));
+            data.setId(Collections.max(ids) + 1);
+        }
         Optional<Employee> existe = this.employeeRepository.findById(data.getId());
-        if(existe != null){
+        if(existe == null){
             response.setCode(500);
             response.setMessage("La transaccion ya existe");
             return  response;
@@ -35,6 +46,13 @@ public class EmployeeService {
 
     public Response deleteEmployee (long id){
         Response response = new Response();
+        Optional<Employee> valida = this.employeeRepository.findById(id);
+        if (valida == null){
+            response.setCode(500);
+            response.setMessage("¡El ID digitado no existe!");
+            return response;
+        }
+
         this.employeeRepository.deleteById(id);
         response.setCode(200);
         response.setMessage("¡Su empleado ha sido eliminada correctamente!");
@@ -43,7 +61,7 @@ public class EmployeeService {
 
     public Response upDateEmployee (Employee data, long id){
         Response response = new Response();
-        Optional<Employee> valida = this.employeeRepository.findById(data.getId());
+        Optional<Employee> valida = this.employeeRepository.findById(id);
         if (valida == null){
             response.setCode(500);
             response.setMessage("¡El ID digitado no existe!");
@@ -51,7 +69,6 @@ public class EmployeeService {
         }
         Employee existe = valida.get();
         existe.setProfile(data.getProfile());
-        existe.setTransactions(data.getTransactions());
         existe.setEmails(data.getEmails());
         existe.setEnterprise(data.getEnterprise());
         existe.setCreatedat(data.getCreatedat());

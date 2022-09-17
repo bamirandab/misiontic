@@ -10,22 +10,18 @@ import java.util.Optional;
 @Service
 public class EnterpriseService {
 
-//    private IEnterpriseRepository enterpriseRepository;
-//    public EnterpriseService(IEnterpriseRepository rep){
-//        this.enterpriseRepository = rep;
-//    }
-
-    public ArrayList<Enterprise> selectAllEnterprise(){
-        ArrayList<Enterprise> enterprise_test = new ArrayList<Enterprise>();
-        enterprise_test.add(new Enterprise());
-//        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
-        return (ArrayList <Enterprise>) enterprise_test;
+    private IEnterpriseRepository enterpriseRepository;
+    public EnterpriseService(IEnterpriseRepository rep){
+        this.enterpriseRepository = rep;
     }
 
-    public Enterprise selectByIdEnterprise (int id){
-        Enterprise enterprise_test = new Enterprise();
+    public ArrayList<Enterprise> selectAllEnterprise(){
+        return (ArrayList <Enterprise>) this.enterpriseRepository.findAll();
+    }
 
-        Optional<Enterprise> existe = Optional.ofNullable(enterprise_test);
+    public Enterprise selectByIdEnterprise (long id){
+
+        Optional<Enterprise> existe = this.enterpriseRepository.findById(id);
         if (existe.isPresent()){
             return existe.get();
         }else{

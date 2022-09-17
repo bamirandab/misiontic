@@ -40,6 +40,12 @@ public class TransactionService {
 
     public Response deleteTransaction(long id){
         Response response = new Response();
+        Transaction existe = selectById(id);
+        if(existe == null){
+            response.setCode(500);
+            response.setMessage("La transaccion no existe");
+            return  response;
+        }
         this.transactionRepository.deleteById(id);
         response.setCode(200);
         response.setMessage("Transaccion eliminado exitosamente");

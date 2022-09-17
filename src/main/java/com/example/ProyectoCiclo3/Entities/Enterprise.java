@@ -1,6 +1,8 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
@@ -28,13 +30,6 @@ public class Enterprise {
 
     @Column (name = "address")
     private String address;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "enterprise")
-    private List<Employee> employee;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "enterprise")
-    private List<Transaction> transactions;
 
     public Date getCreatedat() {
         return createdat;
@@ -100,19 +95,4 @@ public class Enterprise {
         this.address = address;
     }
 
-    public List<Employee> getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(List<Employee> employee) {
-        this.employee = employee;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
 }
