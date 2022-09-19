@@ -1,6 +1,13 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.apache.catalina.User;
+
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name = "Enterprise")
@@ -10,11 +17,11 @@ public class Enterprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @UniqueConstraint()
+
     @Column (name = "name")
     private String name;
 
-//    @UniqueConstraint()
+
     @Column (name = "document")
     private String document;
 
@@ -24,11 +31,28 @@ public class Enterprise {
     @Column (name = "address")
     private String address;
 
-    @Column (name = "user")
-    private User user;
+    public Date getCreatedat() {
+        return createdat;
+    }
 
-    @Column (name = "transactions")
-    private Transaction[] transactions;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public Date getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Date updatedat) {
+        this.updatedat = updatedat;
+    }
+
+    @Column (name = "createdat")
+    private Date createdat;
+
+    @Column (name = "updatedat")
+    private Date updatedat;
+
 
 
     public long getId() {
@@ -71,19 +95,4 @@ public class Enterprise {
         this.address = address;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
-    }
 }

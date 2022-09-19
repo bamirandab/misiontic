@@ -1,36 +1,98 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table (name = "Employee")
+@Table (name = "employee")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @UniqueConstraint()
     @Column (name = "email")
-    private String email;
+    private String emails;
 
     @Column (name = "profile")
-    private Profile profile;
+    private long profile;
 
     @Column (name = "role")
     private EnumRole role;
 
-    @Column (name = "enterprise")
+    @ManyToOne
+    @JoinColumn(name="enterprise_id")
     private Enterprise enterprise;
 
-    @Column (name = "transactions")
-    private Transaction[] transactions;
+    @Column (name = "createdat")
+    private Date createdat;
 
-    @Column (name = "createdAT")
-    private Date createdAt;
+    @Column (name = "updatedat")
+    private Date updatedat;
 
-    @Column (name = "updateAT")
-    private Date updatedAT;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEmails() {
+        return emails;
+    }
+
+    public void setEmails(String emails) {
+        this.emails = emails;
+    }
+
+    public long getProfile() {
+        return profile;
+    }
+
+    public void setProfile(long profile) {
+        this.profile = profile;
+    }
+
+    public EnumRole getRole() {
+        return role;
+    }
+
+    public void setRole(EnumRole role) {
+        this.role = role;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public Date getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public Date getUpdatedAT() {
+        return updatedat;
+    }
+
+    public void setUpdatedAT(Date updatedAT) {
+        this.updatedat = updatedAT;
+    }
+
+
 
 }

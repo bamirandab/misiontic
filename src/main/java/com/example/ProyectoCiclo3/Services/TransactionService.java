@@ -7,6 +7,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -15,65 +16,69 @@ public class TransactionService {
     public TransactionService(ITransactionRepository rep){
         this.transactionRepository = rep;
     }
-    public Transaction findTransaction(int id){
-        return Transaction this.transactionRepository.findTransaction(id);
+    public ArrayList<Transaction> findTransaction(long id){
+        return  this.transactionRepository.findTransaction(id);
     }
 
     public Response createTransaction(Transaction data, long id){
         Response response = new Response();
 
-        //Logica de negocio
-        //Validamos datos
-        if(!isValidEmailAddress(data.getUser().getCorreoElectronico())){
+        Transaction existe = selectById(id);
+        if(existe != null){
             response.setCode(500);
-            response.setMessage("Error, el usuario dado no es válido.");
+            response.setMessage("La transaccion ya existe");
             return  response;
         }
 
-        //Validamos password
-        if(data.getUser().getPassword().equals(null) || data.getUser().getPassword().equals("")){
-            response.setCode(500);
-            response.setMessage("Error, su contraseña no es válida.");
-            return  response;
-        }
-
-        ArrayList<Transaction> existe = this.transactionRepository.existeCorreo(data.getUser().getCorreoElectronico());
-        if(existe != null && existe.size() > 0){
-            response.setCode(500);
-            response.setMessage("Error, el correo electronico ya esta en uso.");
-            return  response;
-        }
-
+        data.setId(id);
         this.transactionRepository.save(data);
         response.setCode(200);
         response.setMessage("Transaccion registrada exitosamente");
         return response;
     }
 
-    public boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
-    }
 
     public Response deleteTransaction(long id){
         Response response = new Response();
-        this.transactionRepository.delete(id);
+        Transaction existe = selectById(id);
+        if(existe == null){
+            response.setCode(500);
+            response.setMessage("La transaccion no existe");
+            return  response;
+        }
+        this.transactionRepository.deleteById(id);
         response.setCode(200);
-        response.setMessage("Usuario eliminado exitosamente");
+        response.setMessage("Transaccion eliminado exitosamente");
         return response;
     }
 
-    public Response updateTransaction(long id, Object[] attributes, Object[] values){
+    public Response updateTransaction(Transaction data, long id){
         Response response = new Response();
-        this.transactionRepository.update(id, attributes, values);
+        Transaction existe = selectById(id);
+        if (existe == null){
+            response.setCode(500);
+            response.setMessage("La transaccion no existe.");
+            return response;
+        }
+        existe.setCreatedat(data.getCreatedat());
+        existe.setUpdatedat(data.getUpdatedat());
+        existe.setAmount(data.getAmount());
+        existe.setConcept(data.getConcept());
+        existe.setId(id);
+        this.transactionRepository.save(existe);
         response.setCode(200);
         response.setMessage("Transaccion actualizada exitosamente");
+        return response;
+    }
+
+    public Transaction selectById(long Id){
+        Optional<Transaction> existe = this.transactionRepository.findById(Id);
+        if(existe.isPresent()){
+            return existe.get();
+        }
+        else {
+            return null;
+        }
     }
 
 }

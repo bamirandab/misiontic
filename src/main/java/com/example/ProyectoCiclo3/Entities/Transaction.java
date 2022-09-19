@@ -1,10 +1,14 @@
 package com.example.ProyectoCiclo3.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "Transaction")
+@Table (name = "transaction")
 public class Transaction {
 
     @Id
@@ -17,17 +21,21 @@ public class Transaction {
     @Column (name = "amount")
     private float amount;
 
-    @Column (name = "user")
-    private User user;
 
-    @Column (name = "enterprise")
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+
+    @ManyToOne
+    @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
-    @Column (name = "createdAT")
-    private Date create;
+    @Column (name = "createdat")
+    private Date createdat;
 
-    @Column (name = "updateAT")
-    private Date updatedAT;
+    @Column (name = "updatedat")
+    private Date updatedat;
 
     public long getId() {
         return id;
@@ -53,8 +61,8 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public User getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
 
@@ -66,20 +74,20 @@ public class Transaction {
         this.enterprise = enterprise;
     }
 
-    public Date getCreate() {
-        return create;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreate(Date create) {
-        this.create = create;
+    public void setCreatedat(Date createdAT) {
+        this.createdat = createdAT;
     }
 
-    public Date getUpdatedAT() {
-        return updatedAT;
+    public Date getUpdatedat() {
+        return updatedat;
     }
 
-    public void setUpdatedAT(Date upDatedAT) {
-        this.updatedAT = upDatedAT;
+    public void setUpdatedat(Date upDatedAT) {
+        this.updatedat = upDatedAT;
     }
 
 
