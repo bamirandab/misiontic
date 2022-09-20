@@ -1,5 +1,6 @@
 package com.example.ProyectoCiclo3.Controllers;
 
+import com.example.ProyectoCiclo3.Entities.Employee;
 import com.example.ProyectoCiclo3.Entities.Enterprise;
 import com.example.ProyectoCiclo3.Services.Response;
 import com.example.ProyectoCiclo3.Services.EnterpriseService;
@@ -9,38 +10,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("enterprises")
 public class EnterpriseController {
 
-    private EnterpriseService enterpriseService;
+    public EnterpriseService enterpriseService;
 
     public EnterpriseController(EnterpriseService ser){
         this.enterpriseService = ser;
     }
 
-    @RequestMapping ("getEnterprises")
+    @RequestMapping ("enterprises")
     public ArrayList <Enterprise> getUsuarios(){
         return this.enterpriseService.selectAllEnterprise();
     }
 
-    @PostMapping ("postEnterprises")
-    public Response createEnterprise(@RequestBody Enterprise request){
-        return this.createEnterprise(request);
+    @PostMapping ("enterprises")
+    public Response createEnterprise(@RequestBody Enterprise data){
+        return this.enterpriseService.createEnterprise(data);
     }
 
-    @RequestMapping ("getEnterprises/{id}")
-    public Enterprise getUsuario(@PathVariable int id){
-        return this.enterpriseService.selectByIdEnterprise(id);
+    @RequestMapping ("enterprises/{id}")
+    public Enterprise getUsuario(@PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        return this.enterpriseService.selectById(id_converter);
     }
 
-    @PatchMapping ("patchEnterprises/{id}")
-    public Response upDateEnterprise(@RequestBody Enterprise request){
-        return this.enterpriseService.upDateEnterprise(request);
+    @PatchMapping ("enterprises/{id}")
+    public Response patchEnterprise(@RequestBody Enterprise data, @PathVariable String id) {
+        long id_converter = Long.parseLong(id);
+        return this.enterpriseService.upDateEnterprise(data, id_converter);
     }
 
-    @DeleteMapping("deleteEnterprise/{id}")
-    public Response deleteEnterpriseId(@PathVariable int id){
-        return this.enterpriseService.deleteEnterprise(id);
+    @DeleteMapping("enterprises/{id}")
+    public Response deleteEnterpriseId(@PathVariable String id){
+        long id_converter = Long.parseLong(id);
+        return this.enterpriseService.deleteEnterprise(id_converter);
     }
 
 }
