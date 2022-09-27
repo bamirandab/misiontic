@@ -53,7 +53,6 @@ public class ProfileService {
         }
         existe.setImage(data.getImage());
         existe.setPhone(data.getPhone());
-        existe.setEmployee(data.getEmployee());
         existe.setCreatedat(data.getCreatedat());
         existe.setUpdatedat(data.getUpdatedat());
 
@@ -71,5 +70,11 @@ public class ProfileService {
             return null;
         }
     }
+
+    public Profile selectByUserName(String username){
+        Profile existe = this.profileRepository.findByUserName(username);
+        return existe;
+    }
+
 
 }

@@ -15,6 +15,10 @@ public interface IProfileRepository extends JpaRepository<Profile,Long> {
     @Query("SELECT u FROM Profile u WHERE u.id = :id")
     Profile findProfileById(@Param("id") long id);
 
+
+    @Query("SELECT u FROM Profile u WHERE u.emails = :emails")
+    Profile findByUserName(@Param("emails") String email);
+
     @Query("SELECT u FROM Profile u ")
     ArrayList<Profile> findAll();
 }
